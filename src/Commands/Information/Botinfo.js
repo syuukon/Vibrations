@@ -14,7 +14,7 @@ module.exports = class extends Command {
 			description: 'Provides information about the bot.',
 			category: 'Information',
 			NSFW: false,
-			args: true,
+			args: false,
 			guildOnly: true
 		});
 	}

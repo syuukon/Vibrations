@@ -28,7 +28,7 @@ module.exports = class extends Command {
 			category: 'Information',
 			usage: '[user]',
 			NSFW: false,
-			args: true,
+			args: false,
 			guildOnly: true
 		});
 	}

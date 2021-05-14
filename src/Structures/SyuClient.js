@@ -18,7 +18,7 @@ module.exports = class SyuClient extends Client {
 
 		this.utils = new Util(this);
 
-		this.owners = process.env.OWNER_ID;
+		this.owners = process.env.OWNERID;
 	}
 
 	validate(options) {

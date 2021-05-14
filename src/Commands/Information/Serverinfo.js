@@ -41,7 +41,7 @@ module.exports = class extends Command {
 			description: 'Provides information about the server that the command was sent in.',
 			category: 'Information',
 			NSFW: false,
-			args: true,
+			args: false,
 			guildOnly: true
 		});
 	}

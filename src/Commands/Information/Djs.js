@@ -35,7 +35,7 @@ module.exports = class extends Command {
 		try {
 			react = await msg.awaitReactions(
 				(reaction, user) => reaction.emoji.name === '🗑️' && user.id === message.author.id,
-				{ max: 1, time: 10000, errors: ['time'] }
+				{ max: 1, time: 15000, errors: ['time'] }
 			);
 		} catch (error) {
 			msg.reactions.removeAll();
