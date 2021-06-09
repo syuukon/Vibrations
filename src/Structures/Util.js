@@ -46,11 +46,11 @@ module.exports = class Util {
 	}
 
 	checkOwner(target) {
-		return this.client.owners.includes(target)
+		return this.client.owners.includes(target);
 	}
 
 	comparePerms(member, target) {
-		return member.roles.highest.position < target.roles.highest.position
+		return member.roles.highest.position < target.roles.highest.position;
 	}
 
 	formatPerms(perm) {
@@ -68,7 +68,7 @@ module.exports = class Util {
 	}
 
 	async loadCommands() {
-		return glob(`${this.directory}commands/**/*.js`).then(commands => {
+		return glob(`${this.directory}Commands/**/*.js`).then(commands => {
 			for (const commandFile of commands) {
 				delete require.cache[commandFile];
 				const { name } = path.parse(commandFile);
@@ -87,14 +87,14 @@ module.exports = class Util {
 	}
 
 	async loadEvents() {
-		return glob(`${this.directory}events/**/*.js`).then(events => {
+		return glob(`${this.directory}Events/**/*.js`).then(events => {
 			for (const eventFile of events) {
 				delete require.cache[eventFile];
 				const { name } = path.parse(eventFile);
 				const File = require(eventFile);
-				if (!this.isClass(File)) throw new TypeError(`Event ${name} doesn't export a class.`);
-				const event = new File(this.client, name);
-				if (!(event instanceof Event)) throw new TypeError(`Event ${name} doesn't exist in the Event directory.`);
+				if (!this.isClass(File)) throw new TypeError(`Event ${name} doesn't export a class!`);
+				const event = new File(this.client, name.toLowerCase());
+				if (!(event instanceof Event)) throw new TypeError(`Event ${name} doesn't belong in Events`);
 				this.client.events.set(event.name, event);
 				event.emitter[event.type](name, (...args) => event.run(...args));
 			}

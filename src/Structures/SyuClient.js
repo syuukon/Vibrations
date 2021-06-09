@@ -11,14 +11,11 @@ module.exports = class SyuClient extends Client {
 		this.validate(options);
 
 		this.commands = new Collection();
-
 		this.events = new Collection();
-
 		this.aliases = new Collection();
-
 		this.utils = new Util(this);
-
 		this.owners = process.env.OWNERID;
+		this.erela = require('./Erela.js');
 	}
 
 	validate(options) {

@@ -18,13 +18,16 @@ module.exports = class extends Command {
 		if (message.channel.type === 'text') {
 			message.channel.messages.fetch().then(messages => {
 				const botMessages = messages.filter(message => (message.author.id === process.env.BOTID) && (!message.pinned) && (message.createdTimestamp - Date.now()) < ms('14d'));
+				if (message.createdTimestamp - Date.now() > ms('14d')) {
+					return message.channel.send('Cannot bulk delete messages that were created more than 14 days ago.');
+				}
 				message.channel.bulkDelete(botMessages);
 				const messagesDeleted = botMessages.array().length;
 
 				message.channel.send(`My messages deleted: ${messagesDeleted}`).then(message => {
 					message.delete({ timeout: 2500 });
 				})
-				.catch(console.error);
+					.catch(console.error);
 				console.log(`Bot messages deleted: ${messagesDeleted} (${message.channel.name} - ${message.guild.name})`);
 			}).catch(err => {
 				console.log('Error deleting bot messages');

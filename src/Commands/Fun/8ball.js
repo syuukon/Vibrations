@@ -39,8 +39,6 @@ const answers = [
 	'Yeeboii.',
 	'N O P E.',
 	'The prophecy is cloudy.',
-	'Man\'s not hot.',
-	'How about ligma?',
 	'¯\\_(ツ)_/¯',
 	'Maybe? Maybe.',
 	'Affirmative.',
@@ -64,7 +62,7 @@ module.exports = class extends Command {
 	async run(message, ...question) {
 		return message.reply(question.join(' ').endsWith('?') ?
 			`:thinking: ${answers[Math.floor(Math.random() * answers.length)]}` :
-			':thinking: That doesn\'t seem like a question. Please ask me again.');
+			':thinking: That doesn\'t seem like a question. Please ask me again. (Message must end with ?)');
 	}
 
 };

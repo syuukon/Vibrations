@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable complexity */
 const Event = require('../../Structures/Event');
 
 module.exports = class extends Event {
@@ -32,8 +34,8 @@ module.exports = class extends Event {
 			}
 
 			if (command.args && !args.length) {
-				return message.reply(`This command requires arguments to function. Usage: ${command.usage ? 
-				command.usage : 'This command doesn\t have a usage format'}.`);
+				return message.reply(`This command requires arguments to function. Usage: ${command.usage ?
+					command.usage : 'This command doesn\t have a usage format'}.`);
 			}
 
 			if (message.guild) {
@@ -44,7 +46,7 @@ module.exports = class extends Event {
 						return message.reply(`You are missing ${this.client.utils.formatArray(missing.map(this.client.utils.formatPerms))} permissions, you need them to use this command!`);
 					}
 				}
-	
+
 				const botPermCheck = command.botPerms ? this.client.defaultPerms.add(command.botPerms) : this.client.defaultPerms;
 				if (botPermCheck) {
 					const missing = message.channel.permissionsFor(this.client.user).missing(botPermCheck);

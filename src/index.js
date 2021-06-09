@@ -4,10 +4,7 @@ const SyuClient = require('./Structures/SyuClient');
 const config = {
 	user: process.env.DISCORD_TOKEN,
 	prefix: process.env.PREFIX,
-	defaultPerms: ['SEND_MESSAGES', 'VIEW_CHANNEL', 'SPEAK'],
-	lavaHost: process.env.LAVALINK_HOST,
-	lavaPort: process.env.LAVALINK_PORT,
-	lavaPass: process.env.LAVALINK_PASS,
+	defaultPerms: ['SEND_MESSAGES', 'VIEW_CHANNEL', 'SPEAK']
 };
 
 const client = new SyuClient(config);

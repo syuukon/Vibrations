@@ -10,7 +10,7 @@ module.exports = class extends Command {
 			category: 'Utilities',
 			usage: '[command]',
 			NSFW: false,
-			args: true,
+			args: false,
 			guildOnly: false
 		});
 	}

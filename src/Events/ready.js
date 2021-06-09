@@ -10,10 +10,13 @@ module.exports = class extends Event {
 
 	run() {
 		console.log([
-			`${this.client.user.username} successfully logged in.`,
+			`${this.client.user.tag} successfully logged in.`,
 			`Loaded ${this.client.commands.size} commands.`,
 			`Loaded ${this.client.events.size} events.`
 		].join('\n'));
+		this.client.user.setActivity('music.', { type: 'LISTENING' });
+		this.client.erela.connect(this.client);
+		this.client.music.init(this.client.user.id);
 
 		/* const activities = [
 			`${this.client.guilds.cache.size} servers`,
@@ -23,8 +26,6 @@ module.exports = class extends Event {
 
 		let i = 0;
 		setInterval(() => this.client.user.setActivity(`${this.client.prefix}help | ${activities[i++ % activities.length]}`, { type: 'WATCHING' }), 60000); */
-
-		this.client.user.setActivity('for =help <cmd>', { type: 'WATCHING' });
 	}
 
 };
