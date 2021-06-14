@@ -9,7 +9,7 @@ module.exports = class extends Command {
 			category: 'Fun',
 			NSFW: false,
 			args: false,
-			guildOnly: false
+			guildOnly: true
 		});
 	}
 
