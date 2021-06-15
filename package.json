@@ -1,5 +1,5 @@
 {
-  "name": "erela_test",
+  "name": "vibrations",
   "localversion": "1.0.0",
   "main": "./src/index.js",
   "scripts": {
