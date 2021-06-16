@@ -38,3 +38,4 @@ module.exports = class VibrationsClient extends Client {
 	}
 
 };
+// first merge
