@@ -27,15 +27,13 @@ module.exports = class extends Command {
 				player.pause(true);
 				return message.channel.send(new MessageEmbed()
 					.setColor('BLUE')
-					.setFooter('https://github.com/syuukon/Discord-Javascript-Bot-V2')
 					.setDescription(`"${player.queue.current.title}" paused.\n\n=pause to resume.`)
 				);
 			} else {
 				player.pause(false);
 				return message.channel.send(new MessageEmbed()
 					.setColor('BLUE')
-					.setFooter('https://github.com/syuukon/Discord-Javascript-Bot-V2')
-					.setDescription(`"${player.queue.current.title}" paused.\n\n=pause to resume.`)
+					.setDescription(`"${player.queue.current.title}" unpaused.`)
 				);
 			}
 		} catch (error) {

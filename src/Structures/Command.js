@@ -4,6 +4,7 @@ module.exports = class Command {
 
 	constructor(client, name, options = {}) {
 		this.client = client;
+		this.bot = client;
 		this.name = options.name || name;
 		this.aliases = options.aliases || [];
 		this.description = options.description || 'No description provided.';
