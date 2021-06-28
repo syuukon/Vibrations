@@ -1,6 +1,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-case-declarations */
 /* eslint-disable complexity */
+const { MessageEmbed } = require('discord.js');
 const Command = require('../../Structures/Command');
 
 module.exports = class extends Command {
@@ -8,7 +9,7 @@ module.exports = class extends Command {
 	constructor(...args) {
 		super(...args, {
 			aliases: ['p'],
-			description: 'Add music to playlist',
+			description: 'Play a song, or add it to the queue if there\'s another song playing.',
 			category: 'Music',
 			guildOnly: true,
 			args: false
@@ -42,7 +43,10 @@ module.exports = class extends Command {
 
 		if (!player.playing && !player.paused && !player.queue.size) player.play();
 
-		return message.channel.send(`Added ${res.tracks[0].title} to the queue.`);
+		return message.channel.send(new MessageEmbed()
+			.setColor('BLUE')
+			.setDescription(`"${res.tracks[0].title}" queued.`)
+		);
 	}
 
 };

@@ -1,5 +1,5 @@
 const { Manager } = require('erela.js');
-const { erela } = require('../../config.json');
+const { erela } = require('../../config/config.json');
 
 module.exports = {
 	connect: (client) => {
