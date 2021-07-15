@@ -36,7 +36,8 @@ module.exports = class extends Command {
 		const player = this.client.music.create({
 			guild: message.guild.id,
 			textChannel: message.channel.id,
-			voiceChannel: message.member.voice.channel.id
+			voiceChannel: message.member.voice.channel.id,
+			selfDeafen: true
 		});
 
 		if (player.state !== 'CONNECTED') {

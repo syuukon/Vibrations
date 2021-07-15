@@ -20,12 +20,12 @@ module.exports = class extends Command {
 			if (!player) {
 				if (message.guild.voice.channel) {
 					return message.channel.send(new MessageEmbed()
-						.setColor('BLUE')
+						.setColor('PURPLE')
 						.setDescription('Stopping.')
 					);
 				} else {
 					return message.channel.send(new MessageEmbed()
-						.setColor('BLUE')
+						.setColor('PURPLE')
 						.setDescription('Error: No song playing.')
 					);
 				}
@@ -35,12 +35,12 @@ module.exports = class extends Command {
 				if (message.guild.voice.channel) {
 					player.destroy();
 					return message.channel.send(new MessageEmbed()
-						.setColor('BLUE')
+						.setColor('PURPLE')
 						.setDescription('Successfully stopped.')
 					);
 				} else {
 					return message.channel.send(new MessageEmbed()
-						.setColor('BLUE')
+						.setColor('PURPLE')
 						.setDescription('Error: No song playing.')
 					);
 				}

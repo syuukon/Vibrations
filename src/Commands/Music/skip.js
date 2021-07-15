@@ -24,13 +24,13 @@ module.exports = class extends Command {
 			else player.stop();
 
 			return message.channel.send(new MessageEmbed()
-				.setColor('BLUE')
+				.setColor('PURPLE')
 				.setDescription(`Skipped ${player.queue.current.title}.`)
 			);
 		} catch (error) {
 			console.error(error);
 			return message.channel.send(new MessageEmbed()
-				.setColor('BLUE')
+				.setColor('PURPLE')
 				.setDescription(`Error occured: ${error.message}`)
 			);
 		}
