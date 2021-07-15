@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable complexity */
 const Event = require('../../Structures/Event');
 
 module.exports = class extends Event {
@@ -8,9 +10,9 @@ module.exports = class extends Event {
 		});
 	}
 
-	async run(state) {
+	async run(d) {
 		if (this.client.music) {
-			this.client.music.updateVoiceState(state);
+			this.client.music.updateVoiceState(d);
 		}
 	}
 

@@ -26,13 +26,13 @@ module.exports = class extends Command {
 			if (player.playing) {
 				player.pause(true);
 				return message.channel.send(new MessageEmbed()
-					.setColor('BLUE')
+					.setColor('PURPLE')
 					.setDescription(`"${player.queue.current.title}" paused.\n\n=pause to resume.`)
 				);
 			} else {
 				player.pause(false);
 				return message.channel.send(new MessageEmbed()
-					.setColor('BLUE')
+					.setColor('PURPLE')
 					.setDescription(`"${player.queue.current.title}" unpaused.`)
 				);
 			}

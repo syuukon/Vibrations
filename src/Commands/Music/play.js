@@ -3,6 +3,7 @@
 /* eslint-disable complexity */
 const { MessageEmbed } = require('discord.js');
 const Command = require('../../Structures/Command');
+const { time } = require('../../Structures/Erela');
 
 module.exports = class extends Command {
 
@@ -16,6 +17,7 @@ module.exports = class extends Command {
 		});
 	}
 
+	// eslint-disable-next-line consistent-return
 	async run(message, args) {
 		if (!message.member.voice.channel) return message.channel.send('You must join a voice channel to use this command.');
 		if (!args.length) return message.channel.send('Please specify a song name or provide a URL to the song.');
@@ -36,17 +38,24 @@ module.exports = class extends Command {
 			textChannel: message.channel.id,
 			voiceChannel: message.member.voice.channel.id
 		});
+
 		if (player.state !== 'CONNECTED') {
 			player.connect();
 		}
 		player.queue.add(res.tracks[0]);
 
-		if (!player.playing && !player.paused && !player.queue.size) player.play();
+		if (!player.playing && !player.paused && !player.queue.size) {
+			player.play()
+				.then();
+			clearTimeout(time);
+		}
 
-		return message.channel.send(new MessageEmbed()
-			.setColor('BLUE')
-			.setDescription(`"${res.tracks[0].title}" queued.`)
-		);
+		if (player.playing && player.queue.size > 0) {
+			return message.channel.send(new MessageEmbed()
+				.setColor('PURPLE')
+				.setDescription(`"${res.tracks[0].title}" queued.`)
+			);
+		}
 	}
 
 };

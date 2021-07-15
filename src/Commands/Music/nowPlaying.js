@@ -16,7 +16,7 @@ module.exports = class extends Command {
 	async run(message) {
 		try {
 			const player = this.client.music.players.get(message.guild.id);
-			if (!player || player.queue.size === 0 || (player.position === 0 && !player.playing)) return message.channel.send('Nothing is playing in this server.');
+			if (!player || (player.size === 0 && player.position === 0 && !player.playing)) return message.channel.send('Nothing is playing in this server.');
 
 			const { channel } = message.member.voice;
 			if (!channel) return message.channel.send('You must be connected to a voice channel.');
@@ -45,7 +45,7 @@ module.exports = class extends Command {
 
 			const videoEmbed = new MessageEmbed()
 				.setThumbnail(`https://i.ytimg.com/vi/${video.identifier}/hqdefault.jpg`)
-				.setColor('BLUE')
+				.setColor('PURPLE')
 				.setTitle(video.title)
 				.setDescription(description)
 				.setFooter(message.author.username, message.author.displayAvatarURL({ dynamic: true }))

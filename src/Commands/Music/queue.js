@@ -21,11 +21,11 @@ module.exports = class extends Command {
 	async run(message) {
 		try {
 			const { channel } = message.member.voice;
-			if (!channel) return message.channel.send('**You Have To Be Connected To A Voice Channel!**');
+			if (!channel) return message.channel.send('You Have To Be Connected To A Voice Channel!');
 
 			const player = this.client.music.players.get(message.guild.id);
-			if (!player) return message.channel.send('**Nothing Playing In This Server!**');
-			if (channel.id !== player.voiceChannel) return message.channel.send('**You Have To Be In The Same Voice Channel With The Bot!**');
+			if (!player) return message.channel.send('Nothing Playing In This Server!');
+			if (channel.id !== player.voiceChannel) return message.channel.send('You Have To Be In The Same Voice Channel With The Bot!');
 
 			let currentPage = 0;
 			const embeds = this.generateQueueEmbed(message, player.queue);
@@ -76,7 +76,7 @@ module.exports = class extends Command {
 			const embed = new MessageEmbed()
 				.setTitle('Song Queue\n')
 				.setThumbnail(`https://i.ytimg.com/vi/${video.identifier}/hqdefault.jpg`)
-				.setColor('BLUE')
+				.setColor('PURPLE')
 				.setDescription(`\n**Current Song** - [${queue.current.title}](${queue.current.url})\n\n${info}`)
 				.setFooter(`Requested By - ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
 				.setTimestamp();
