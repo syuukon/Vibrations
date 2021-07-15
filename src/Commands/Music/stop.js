@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 const Command = require('../../Structures/Command');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class extends Command {
 
@@ -15,27 +16,33 @@ module.exports = class extends Command {
 
 	async run(message) {
 		try {
-			const player = this.client.music.create({
-				guild: message.guild.id,
-				textChannel: message.channel.id,
-				voiceChannel: message.member.voice.channel.id
-			});
+			const player = this.client.music.players.get(message.guild.id);
 			if (!player) {
 				if (message.guild.voice.channel) {
-					message.guild.voice.channel.leave();
-					return message.channel.send('Successfully stopped. Leaving the voice channel.');
+					return message.channel.send(new MessageEmbed()
+						.setColor('PURPLE')
+						.setDescription('Stopping.')
+					);
 				} else {
-					return message.channel.send('Error: No song playing.');
+					return message.channel.send(new MessageEmbed()
+						.setColor('PURPLE')
+						.setDescription('Error: No song playing.')
+					);
 				}
 			}
 
 			if (player.queue && (player.queue.size || !player.queue.size)) {
 				if (message.guild.voice.channel) {
-					message.guild.voice.channel.leave();
 					player.destroy();
-					return message.channel.send('Successfully stopped. Leaving the voice channel.');
+					return message.channel.send(new MessageEmbed()
+						.setColor('PURPLE')
+						.setDescription('Successfully stopped.')
+					);
 				} else {
-					return message.channel.send('Error: No song playing.');
+					return message.channel.send(new MessageEmbed()
+						.setColor('PURPLE')
+						.setDescription('Error: No song playing.')
+					);
 				}
 			}
 		} catch (err) {

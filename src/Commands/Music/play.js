@@ -1,20 +1,23 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-case-declarations */
 /* eslint-disable complexity */
+const { MessageEmbed } = require('discord.js');
 const Command = require('../../Structures/Command');
+const { time } = require('../../Structures/Erela');
 
 module.exports = class extends Command {
 
 	constructor(...args) {
 		super(...args, {
 			aliases: ['p'],
-			description: 'Add music to playlist',
+			description: 'Play a song, or add it to the queue if there\'s another song playing.',
 			category: 'Music',
 			guildOnly: true,
 			args: false
 		});
 	}
 
+	// eslint-disable-next-line consistent-return
 	async run(message, args) {
 		if (!message.member.voice.channel) return message.channel.send('You must join a voice channel to use this command.');
 		if (!args.length) return message.channel.send('Please specify a song name or provide a URL to the song.');
@@ -33,16 +36,27 @@ module.exports = class extends Command {
 		const player = this.client.music.create({
 			guild: message.guild.id,
 			textChannel: message.channel.id,
-			voiceChannel: message.member.voice.channel.id
+			voiceChannel: message.member.voice.channel.id,
+			selfDeafen: true
 		});
+
 		if (player.state !== 'CONNECTED') {
 			player.connect();
 		}
 		player.queue.add(res.tracks[0]);
 
-		if (!player.playing && !player.paused && !player.queue.size) player.play();
+		if (!player.playing && !player.paused && !player.queue.size) {
+			player.play()
+				.then();
+			clearTimeout(time);
+		}
 
-		return message.channel.send(`Added ${res.tracks[0].title} to the queue.`);
+		if (player.playing && player.queue.size > 0) {
+			return message.channel.send(new MessageEmbed()
+				.setColor('PURPLE')
+				.setDescription(`"${res.tracks[0].title}" queued.`)
+			);
+		}
 	}
 
 };

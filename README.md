@@ -1,1 +1,0 @@
-Music bot for discord written in Javascript, using Erela.js and Lavalink, for the purpose of learning Javascript. There will probably be bugs, but I will try my best to fix them and improve the bot as I continue to learn.

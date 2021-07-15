@@ -1,4 +1,5 @@
 const Command = require('../../Structures/Command');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class extends Command {
 
@@ -22,10 +23,16 @@ module.exports = class extends Command {
 			if (!player.playing) return message.channel.send('Nothing playing.');
 			else player.stop();
 
-			return message.channel.send(`Skipped ${player.queue.current.title}.`);
+			return message.channel.send(new MessageEmbed()
+				.setColor('PURPLE')
+				.setDescription(`Skipped ${player.queue.current.title}.`)
+			);
 		} catch (error) {
 			console.error(error);
-			return message.channel.send(`Error occured: ${error.message}`);
+			return message.channel.send(new MessageEmbed()
+				.setColor('PURPLE')
+				.setDescription(`Error occured: ${error.message}`)
+			);
 		}
 	}
 

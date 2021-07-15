@@ -22,8 +22,8 @@ module.exports = class extends Command {
 			if (!player || (player && player.state === 'DISCONNECTED')) {
 				this.client.music.create({
 					guild: message.guild.id,
-					voiceChannel: channel.id,
 					textChannel: message.channel.id,
+					voiceChannel: message.member.voice.channel.id,
 					selfDeafen: true
 				}).connect();
 				return message.channel.send(`Connected to channel: ${channel.name}.`);

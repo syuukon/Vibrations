@@ -14,7 +14,7 @@ module.exports = class extends Event {
 			`Loaded ${this.client.commands.size} commands.`,
 			`Loaded ${this.client.events.size} events.`
 		].join('\n'));
-		this.client.user.setActivity('music.', { type: 'LISTENING' });
+		this.client.user.setActivity('=play <songname>', { type: 'LISTENING' });
 		this.client.erela.connect(this.client);
 		this.client.music.init(this.client.user.id);
 	}
